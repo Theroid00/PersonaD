@@ -33,7 +33,8 @@ message_*.json
 .DS_Store
 Thumbs.db
 
-# We're including model files and checkpoints in this repo
-# Uncomment the lines below if the models become too large
-# fine_tuned_model/model.safetensors
-# checkpoints/best_model/model.safetensors
+# Large model files (over GitHub's 100MB limit)
+fine_tuned_model/model.safetensors
+checkpoints/best_model/model.safetensors
+checkpoints/*/model.safetensors
+*.safetensors
