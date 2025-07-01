@@ -22,9 +22,9 @@ var/
 venv/
 .env
 
-# Model files - COMMENTED OUT to include model files
-# fine_tuned_model/
-# checkpoints/
+# Personal data - don't check in message JSON files by default
+# Comment out the next line if you want to include sample messages
+message_*.json
 
 # Logs
 *.log
@@ -32,3 +32,8 @@ venv/
 # OS specific
 .DS_Store
 Thumbs.db
+
+# We're including model files and checkpoints in this repo
+# Uncomment the lines below if the models become too large
+# fine_tuned_model/model.safetensors
+# checkpoints/best_model/model.safetensors
