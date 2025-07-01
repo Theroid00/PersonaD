@@ -2,17 +2,17 @@
 
 This project fine-tunes a Hugging Face Transformers GPT-2 model using Instagram DM chat history to create a personalized chatbot that mimics a specific person's conversation style.
 
-## Repository Structure
+## Requirements
+
+- Python 3.7+
+- PyTorch
+- Transformers (Hugging Face)
+- tqdm
+
+Install the required packages using:
 
 ```
-loml1/
-├── chat_with_model.py    # Interactive chat with the fine-tuned model
-├── clean_and_finetune.py # Main script for cleaning and fine-tuning
-├── setup_model.py        # Helper to set up the model after cloning
-├── sample_message.json   # Example of expected data format
-├── requirements.txt      # Python dependencies
-├── LICENSE               # MIT License
-└── README.md             # This file
+pip install -r requirements.txt
 ```
 
 ## Getting Started
