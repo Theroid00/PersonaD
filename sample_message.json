@@ -1,0 +1,28 @@
+{
+  "participants": [
+    {"name": "User Name"},
+    {"name": "Friend Name"}
+  ],
+  "messages": [
+    {
+      "sender_name": "User Name",
+      "timestamp_ms": 1625097600000,
+      "content": "Hello! How are you today?"
+    },
+    {
+      "sender_name": "Friend Name",
+      "timestamp_ms": 1625097660000,
+      "content": "I'm doing great! Just finished a nice book. How about you?"
+    },
+    {
+      "sender_name": "User Name",
+      "timestamp_ms": 1625097720000,
+      "content": "I'm good too. What book were you reading?"
+    },
+    {
+      "sender_name": "Friend Name",
+      "timestamp_ms": 1625097780000,
+      "content": "It was a sci-fi novel about AI. Very interesting stuff!"
+    }
+  ]
+}
