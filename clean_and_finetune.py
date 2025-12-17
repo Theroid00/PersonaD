@@ -82,7 +82,7 @@ def filter_text_messages(messages):
             message.get("photos") or 
             message.get("videos") or 
             message.get("content") == "You sent an attachment." or
-            message.get("content") == "Vishwa sent an attachment."
+            message.get("content") == "User2 sent an attachment."
         ):
             text_messages.append(message)
     
@@ -109,8 +109,8 @@ def format_instagram_conversations(ig_data, chunk_size=20, max_chunks=None):
         participants = ["User", "Friend"]
     
     # In this case, we're explicitly identifying the participants
-    user_name = "Pranay Kapoor"  # This is who we want the model to talk TO
-    friend_name = "Vishwa Joshi"  # This is who we want the model to talk AS
+    user_name = "User1"  # This is who we want the model to talk TO
+    friend_name = "User2"  # This is who we want the model to talk AS
     
     logger.info(f"User: {user_name}, Friend (model persona): {friend_name}")
     
@@ -123,20 +123,20 @@ def format_instagram_conversations(ig_data, chunk_size=20, max_chunks=None):
     # Process messages in chunks to create multiple training examples
     chunk_count = 0
     
-    # First, let's extract all of Vishwa's messages to create a personality profile
-    vishwa_messages = [m.get("content", "") for m in messages if m.get("sender_name", "") == friend_name]
+    # First, let's extract all of User2's messages to create a personality profile
+    User2_messages = [m.get("content", "") for m in messages if m.get("sender_name", "") == friend_name]
     
-    # Add a special conversation at the beginning that describes who Vishwa is
-    if vishwa_messages:
-        vishwa_profile = "\n".join([
+    # Add a special conversation at the beginning that describes who User2 is
+    if User2_messages:
+        User2_profile = "\n".join([
             "User: Tell me about yourself.",
-            f"Friend: I'm Vishwa Joshi. I like to talk about interesting topics, share memes, and connect with friends. "
+            f"Friend: I'm User2. I like to talk about interesting topics, share memes, and connect with friends. "
             f"I sometimes use Hindi and English mixed together. I'm generally friendly and enjoy conversations.",
             "User: How would you describe your texting style?",
             f"Friend: I'm casual but thoughtful in my texts. I use emojis sometimes. I can be funny and sarcastic, "
             f"but also caring. I respond to what people say and ask questions to keep the conversation going."
         ])
-        conversations.append(vishwa_profile)
+        conversations.append(User2_profile)
         chunk_count += 1
     
     # Create sliding window conversations
@@ -305,12 +305,12 @@ def generate_response(model, tokenizer, prompt, device, max_length=100):
 def chat_with_model(model, tokenizer, device, exit_phrases=("quit", "exit", "bye")):
     """Interactive chat with the fine-tuned model"""
     logger.info("Starting chat with the model. Type 'quit', 'exit', or 'bye' to end the conversation.")
-    logger.info("This model is trained to respond like Vishwa Joshi based on Instagram DM history.")
+    logger.info("This model is trained to respond like User2 based on Instagram DM history.")
     
     # Start with a personality prompt to guide the model
     conversation_history = (
         "User: Tell me about yourself.\n"
-        "Friend: I'm Vishwa Joshi. I like to talk about interesting topics, share memes, and connect with friends. "
+        "Friend: I'm User2. I like to talk about interesting topics, share memes, and connect with friends. "
         "I sometimes use Hindi and English mixed together. I'm generally friendly and enjoy conversations.\n"
         "User: How would you describe your texting style?\n"
         "Friend: I'm casual but thoughtful in my texts. I use emojis sometimes. I can be funny and sarcastic, "
@@ -321,7 +321,7 @@ def chat_with_model(model, tokenizer, device, exit_phrases=("quit", "exit", "bye
     conversation_history += "\nUser: Let's have a real conversation. Please be yourself and don't repeat my words or previous conversations."
     
     while True:
-        user_input = input("You (as Pranay): ")
+        user_input = input("You (as User1): ")
         if user_input.lower() in exit_phrases:
             logger.info("Ending conversation.")
             break
@@ -334,7 +334,7 @@ def chat_with_model(model, tokenizer, device, exit_phrases=("quit", "exit", "bye
         
         # Add response to conversation history and display
         conversation_history += f" {response}"
-        print(f"Friend (as Vishwa): {response}")
+        print(f"Friend (as User2): {response}")
         
         # Keep conversation history from growing too large by keeping only the last 10 exchanges
         # But always keep the initial personality prompt
