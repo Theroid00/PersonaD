@@ -51,17 +51,17 @@ def generate_response(model, tokenizer, prompt, device, max_length=100):
 def chat_with_model(model, tokenizer, device, exit_phrases=("quit", "exit", "bye")):
     """Interactive chat with the fine-tuned model"""
     logger.info("Starting chat with the model. Type 'quit', 'exit', or 'bye' to end the conversation.")
-    logger.info("This model is trained to respond like Vishwa Joshi based on Instagram DM history.")
+    logger.info("This model is trained to respond like User2 based on Instagram DM history.")
     
     # Add a personality prompt to help guide the model's responses
-    personality_prompt = "The following is a conversation between User (Pranay Kapoor) and Friend (Vishwa Joshi). " \
-                         "Vishwa is creative, friendly, and has a unique way of expressing herself. " \
-                         "She responds naturally in a conversational manner.\n\n"
+    personality_prompt = "The following is a conversation between User (User1) and Friend (User2). " \
+                         "User2 is creative, friendly, and has a unique way of expressing herself. " \
+                         "They responds naturally in a conversational manner.\n\n"
     
     conversation_history = personality_prompt
     
     while True:
-        user_input = input("You (as Pranay): ")
+        user_input = input("You : ")
         if user_input.lower() in exit_phrases:
             logger.info("Ending conversation.")
             break
@@ -74,7 +74,7 @@ def chat_with_model(model, tokenizer, device, exit_phrases=("quit", "exit", "bye
         
         # Add response to conversation history and display
         conversation_history += f" {response}\n"
-        print(f"Vishwa: {response}")
+        print(f"User2: {response}")
         
         # Keep conversation history from growing too large by keeping only the last 10 exchanges
         if conversation_history.count("User:") > 10:
@@ -111,3 +111,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
